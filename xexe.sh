@@ -1,38 +1,3 @@
-#######################################################################
-#######################################################################
-##                                                                   ##
-## THIS SCRIPT SHOULD ONLY BE RUN ON A TANIX TX3 BOX RUNNING ARMBIAN ##
-##                                                                   ##
-#######################################################################
-#######################################################################
-set -o errexit  # Exit script when a command exits with non-zero status
-set -o errtrace # Exit on error inside any functions or sub-shells
-set -o nounset  # Exit script on use of an undefined variable
-set -o pipefail # Return exit status of the last command in the pipe that failed
-
-# ==============================================================================
-# GLOBALS
-# ==============================================================================
-readonly HOSTNAME="homeassistant"
-
-# ==============================================================================
-# SCRIPT LOGIC
-# ==============================================================================
-
-# ------------------------------------------------------------------------------
-# Ensures the hostname of the Pi is correct.
-# ------------------------------------------------------------------------------
-update_hostname() {
-    hostname
-    sudo hostname homeassistant
-    hostname "${HOSTNAME}"
-    echo ""
-    echo "O nome do host será alterado na próxima reinicialização para: ${HOSTNAME}"
-    echo ""
-
-}
-
-
 # ------------------------------------------------------------------------------
 # Installs dependences
 # ------------------------------------------------------------------------------
