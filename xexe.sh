@@ -33,43 +33,6 @@ update_hostname() {
 }
 
 # ------------------------------------------------------------------------------
-# Repair apparmor and cgroups
-# ------------------------------------------------------------------------------
-repair_apparmor_and_cgroups() {
-    echo ""
-    echo "A reparar alertas de apparmor e cgroups"
-    echo ""
-  if ! grep -q "cgroup_enable=memory swapaccount=1 systemd.unified_cgroup_hierarchy=false apparmor=1 security=apparmor" "/boot/uEnv.txt"; then
-    sed -i 's/APPEND.*/& cgroup_enable=memory swapaccount=1 systemd.unified_cgroup_hierarchy=false apparmor=1 security=apparmor/g' /boot/uEnv.txt
-  fi
-}
-
-
-
-# ------------------------------------------------------------------------------
-# change operating system
-# ------------------------------------------------------------------------------
-update_operating_system() {
-    echo ""
-    echo "A resolver o alerta de sistema incompatível..."
-    echo ""
-    sed -i 's#Armbian 23.08.0-trunk Bullseye#Debian GNU/Linux 11 (bullseye)#g'  /etc/os-release
-#    sed -i 's#Armbian 23.02.0-trunk Bullseye#Debian GNU/Linux 11 (bullseye)#g'  /etc/os-release
-#    sed -i 's/Armbian 23.02.0-trunk Bullseye/Debian GNU/Linux 11 (bullseye)/g' etc/os-release
-}
-
-# ------------------------------------------------------------------------------
-# Installs armbian software
-# ------------------------------------------------------------------------------
-install_armbian-software() {
-  echo ""
-  echo "A instalar Armbian Software..."
-  echo ""
-  armbian-software || :
-}
-
-
-# ------------------------------------------------------------------------------
 # Installs dependences
 # ------------------------------------------------------------------------------
 install_dependences() {
